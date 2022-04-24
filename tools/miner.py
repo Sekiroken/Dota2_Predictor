@@ -24,7 +24,7 @@ first_match = last_patch_dict['first_match_id']
 last_match = last_patch_dict['last_match_id']
 
 
-def mine_data(file_name='save.csv',
+def mine_data(file_name=None,
               first_match_id=first_match,
               last_match_id=last_match,
               stop_at=None,

@@ -3,10 +3,6 @@
 import json
 import logging
 
-'from pathlib import Path'
-'parent_d = Path(__file__).resolve().parents[1]'
-'''METADATA_JSON_PATH = parent_d/'metadata.json'''
-
 METADATA_JSON_PATH = 'metadata.json'
 
 logging.basicConfig(level=logging.INFO)

@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def _dataset_to_features(dataset_df, advantages=True):
+def _dataset_to_features(dataset_df, advantages=None):
     """ Transforms a mined pandas DataFrame into a feature matrix. This method assumes the following
     format of a DataFrame:
     columns: [match_id,radiant_win,radiant_team,dire_team,avg_mmr,num_mmr,game_mode,lobby_type]

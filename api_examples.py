@@ -126,7 +126,6 @@ def visualize_data_example():
 
 def main():
     mine_data_example()
-
     patch_data_example()
     load_dataset_example()
     training_example()
