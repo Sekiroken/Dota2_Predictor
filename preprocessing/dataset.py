@@ -38,8 +38,8 @@ def _dataset_to_features(dataset_df, advantages=None):
 
     for i, row in enumerate(dataset_np):
         radiant_win = row[1]
-        radiant_heroes = map(int, row[2].split(','))
-        dire_heroes = map(int, row[3].split(','))
+        radiant_heroes = list(map(int, row[2].split(',')))
+        dire_heroes = list(map(int, row[3].split(',')))
 
         for j in range(5):
             x_matrix[i, radiant_heroes[j] - 1] = 1
