@@ -17,8 +17,8 @@ def augment_with_advantages(synergy, counter, radiant_heroes, dire_heroes):
     synergy_dire = 0
     counter_score = 0
 
-    for i in range(5):
-        for j in range(5):
+    for i in list(range(5)):
+        for j in list(range(5)):
             if i > j:
                 synergy_radiant += synergy[radiant_heroes[i] - 1][radiant_heroes[j] - 1]
                 synergy_dire += synergy[dire_heroes[i] - 1][dire_heroes[j] - 1]
