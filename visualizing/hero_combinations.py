@@ -2,20 +2,20 @@
 import numpy as np
 
 import plotly.graph_objs as go
-from chart_studio import plotly as py
+import plotly.offline as py
 from tools.metadata import get_hero_dict
 
 
 def plot_synergies():
     synergies = np.loadtxt('pretrained/synergies_all.csv')
 
-    for i in range(114):
+    for i in list(range(114)):
         synergies[i, i] = 0.5
 
     hero_dict = get_hero_dict()
 
     x_labels = []
-    for i in range(114):
+    for i in list(range(114)):
         if i != 23:
             x_labels.append(hero_dict[i + 1])
 
@@ -47,19 +47,19 @@ def plot_synergies():
     data = [trace]
     fig = go.Figure(data=data, layout=layout)
 
-    py.iplot(fig, filename='heatmap_synergies')
+    py.plot(fig, filename='heatmap_synergies')
 
 
 def plot_counters():
     counters = np.loadtxt('pretrained/counters_all.csv')
 
-    for i in range(114):
+    for i in list(range(114)):
         counters[i, i] = 0.5
 
     hero_dict = get_hero_dict()
 
     x_labels = []
-    for i in range(114):
+    for i in list(range(114)):
         if i != 23:
             x_labels.append(hero_dict[i + 1])
 
@@ -93,4 +93,4 @@ def plot_counters():
     data = [trace]
     fig = go.Figure(data=data, layout=layout)
 
-    py.iplot(fig, filename='heatmap_counters')
+    py.plot(fig, filename='heatmap_counters')

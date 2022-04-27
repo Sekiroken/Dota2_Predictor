@@ -1,10 +1,11 @@
 import numpy as np
+
 from tools.metadata import get_hero_dict
 import operator
 import pandas as pd
 
 import plotly.graph_objs as go
-from chart_studio import plotly as py
+import plotly.offline as py
 
 def winrate_statistics(dataset_df, mmr_info):
     x_data, y_data = dataset_df
@@ -14,7 +15,7 @@ def winrate_statistics(dataset_df, mmr_info):
     winrate = np.zeros(114)
 
     for idx, game in enumerate(x_data):
-        for i in range(228):
+        for i in list(range(228)):
             if game[i] == 1:
                 games[i % 114] += 1
 
@@ -30,7 +31,7 @@ def winrate_statistics(dataset_df, mmr_info):
     winrate_dict = dict()
     hero_dict = get_hero_dict()
 
-    for i in range(114):
+    for i in list(range(114)):
         if i != 23:
             winrate_dict[hero_dict[i + 1]] = winrate[i]
 
@@ -38,7 +39,7 @@ def winrate_statistics(dataset_df, mmr_info):
     x_plot_data = [x[0] for x in sorted_winrates]
     y_plot_data = [x[1] for x in sorted_winrates]
 
-    title = 'Hero winrates at ' + mmr_info + ' MMR'
+    title = 'Винрейт героев на ' + mmr_info + ' MMR'
     data = [go.Bar(
         y=x_plot_data,
         x=y_plot_data,
@@ -49,14 +50,14 @@ def winrate_statistics(dataset_df, mmr_info):
         title=title,
         width=1000,
         height=1400,
-        yaxis=dict(title='hero',
+        yaxis=dict(title='Герой',
                    ticks='',
                    nticks=114,
                    tickfont=dict(
                        size=8,
                        color='black')
                    ),
-        xaxis=dict(title='win rate',
+        xaxis=dict(title='Количество побед',
                    nticks=30,
                    tickfont=dict(
                        size=10,
@@ -66,7 +67,7 @@ def winrate_statistics(dataset_df, mmr_info):
 
     fig = go.Figure(data=data, layout=layout)
 
-    py.iplot(fig, filename='hero_winrates_' + mmr_info)
+    py.offline.plot(fig, filename='hero_winrates_' + mmr_info)
 
 
 def pick_statistics(dataset_df, mmr_info):
@@ -77,7 +78,7 @@ def pick_statistics(dataset_df, mmr_info):
     pick_rate = np.zeros(114)
 
     for idx, game in enumerate(x_data):
-        for i in range(228):
+        for i in list(range(228)):
             if game[i] == 1:
                 games[i % 114] += 1
 
@@ -93,7 +94,7 @@ def pick_statistics(dataset_df, mmr_info):
     pick_rate_dict = dict()
     hero_dict = get_hero_dict()
 
-    for i in range(114):
+    for i in list(range(114)):
         if i != 23:
             pick_rate_dict[hero_dict[i + 1]] = pick_rate[i]
 
@@ -129,7 +130,7 @@ def pick_statistics(dataset_df, mmr_info):
 
     fig = go.Figure(data=data, layout=layout)
 
-    py.iplot(fig, filename='hero_pickrates_' + mmr_info)
+    py.plot(fig, filename='hero_pickrates_' + mmr_info)
 
 
 def mmr_distribution(csv_file):
@@ -138,9 +139,9 @@ def mmr_distribution(csv_file):
     data = [go.Histogram(x=dataset[:30000]['avg_mmr'])]
 
     layout = go.Layout(
-        title='MMR distribution (sample of 30k games)'
+        title='Распределение MMR (выборка из 30к игр)'
     )
 
     fig = go.Figure(data=data, layout=layout)
 
-    py.iplot(fig, filename='MMR_distribution')
+    py.plot(fig, filename='MMR_distribution')
