@@ -212,11 +212,12 @@ def query(mmr,
                            cnts,
                            heroes_released)
 
-    return _query_missing(model,
-                          scaler,
-                          radiant_heroes,
-                          dire_heroes,
-                          syns,
-                          cnts,
-                          sims,
-                          heroes_released)
+    if len(radiant_heroes) >= 4 & len(dire_heroes) >= 4:
+        return _query_missing(model,
+                              scaler,
+                              radiant_heroes,
+                              dire_heroes,
+                              syns,
+                              cnts,
+                              sims,
+                              heroes_released)
