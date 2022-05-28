@@ -2,9 +2,12 @@ import json
 import logging
 import os
 import ssl
-import urllib3
+import urllib
 import urllib.error
+import sklearn.utils._typedefs
+import sklearn.linear_model._logistic
 
+import urllib3
 from flask import Flask, render_template, request
 
 from training.query import query
@@ -26,6 +29,7 @@ def home():
         dire = [get_hero_id(hero) for hero in heroes[5:] if get_hero_id(hero)]
         mmr = int(request.json['mmr'])
 
+
         text = query(mmr, radiant, dire)
 
         if isinstance(text, list):
@@ -38,10 +42,12 @@ def home():
                 'radiantHeroes': str(heroes[:5]),
                 'direHeroes': str(heroes[5:]),
                 'prediction': text,
+                'radiantTeam': request.json['radiantTeam'],
+                'direTeam': request.json['direTeam']
             }
-            response = http.request('POST', "http://localhost:9100/api/msg3", fields, timeout=0.3)
+            response = http.request('POST', "http://localhost:9100/api/msg4", fields, timeout=0.3)
         except (urllib.error.URLError, ssl.SSLError) as error:
-            logger.error("Failed to make a request starting at match ID")
+            logger.error("Failed to send message to telegram bot.")
         return text
 
     hero_names = get_full_hero_list()

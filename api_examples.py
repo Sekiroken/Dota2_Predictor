@@ -1,32 +1,49 @@
 """ Module for showing examples of dota predictor's API usage """
 import logging
 
-from preprocessing.dataset import read_dataset
-from tools.metadata import get_last_patch, get_patch
+#from preprocessing.dataset import read_dataset
+#from tools.metadata import get_last_patch, get_patch
 from tools.miner import mine_data
+<<<<<<< Updated upstream
 from training.cross_validation import evaluate
 from training.query import query
 from visualizing.dataset_stats import pick_statistics, winrate_statistics, mmr_distribution
 from visualizing.hero_combinations import plot_synergies, plot_counters
 from visualizing.hero_map import plot_hero_map
-from visualizing.learning_curve import plot_learning_curve
+from visualizing.learning_curve import
+=======
+#from training.cross_validation import evaluate
+#from training.query import query
+#from visualizing.dataset_stats import pick_statistics, winrate_statistics, mmr_distribution
+#from visualizing.hero_combinations import plot_synergies, plot_counters
+#from visualizing.hero_map import plot_hero_map
+#from visualizing.learning_curve import plot_learning_curve
+>>>>>>> Stashed changes
 
-
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO plot_learning_curve
+)
 logger = logging.getLogger(__name__)
 
 
 def mine_data_example():
     mine_data(file_name='test_dataset.csv')
+<<<<<<< Updated upstream
 
     # mine 100 games from the last patch
+=======
+    #mine 100 games from the last patch
+>>>>>>> Stashed changes
     #mined_df = mine_data(stop_at=100)
     #logger.info("First 5 rows from the mined dataframe are: \n%s", mined_df.head().to_string())
 
     # mine 1000 games between given match IDs and save file
     #mine_data(file_name='mine_test.csv',
     #          first_match_id=6525227303,
+<<<<<<< Updated upstream
     #          last_match_id=6536983009,-
+=======
+    #          last_match_id=6536983009,
+>>>>>>> Stashed changes
     #          stop_at=1000)
 
 
@@ -127,10 +144,17 @@ def visualize_data_example():
 
 
 def main():
+<<<<<<< Updated upstream
     #mine_data_example()
     #patch_data_example()
     #load_dataset_example()
     training_example()
+=======
+    mine_data_example()
+    #patch_data_example()
+    #load_dataset_example()
+    #training_example()
+>>>>>>> Stashed changes
     #query_example()
     #visualize_data_example()
 

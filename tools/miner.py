@@ -28,7 +28,7 @@ def mine_data(file_name=None,
               first_match_id=first_match,
               last_match_id=last_match,
               stop_at=None,
-              timeout=1.5,
+              timeout=30.0,
               save_every=1000):
     """ Mine data using the official Opendota API. Keep requests at a decent rate (3/s).
     For every request, a JSON containing 100 games is returned. The games are downloaded
@@ -74,6 +74,7 @@ def mine_data(file_name=None,
         except (ValueError, KeyError) as error:
             logger.error("Corrupt JSON starting at match ID %d, skipping it", current_match_id)
             current_match_id -= 1
+            time.sleep(timeout)
             continue
 
         current_match_id = last_match_id
